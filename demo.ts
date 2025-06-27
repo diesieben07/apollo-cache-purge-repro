@@ -24,7 +24,7 @@ const client = new ApolloClient({
             message: "Hello World" + (returnDifferentData ? (index++) : ""),
           }
         } satisfies FetchResult;
-        console.log('FetchResult', result);
+        console.log('Server returning', result);
         observer.next(result);
         observer.complete();
       }, 500);
