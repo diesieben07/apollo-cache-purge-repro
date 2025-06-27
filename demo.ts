@@ -19,11 +19,13 @@ const client = new ApolloClient({
   link: new ApolloLink((operation: Operation, forward: NextLink) => {
     return new Observable(observer => {
       const timeout = setTimeout(() => {
-        observer.next({
+        let result = {
           data: {
             message: "Hello World" + (returnDifferentData ? (index++) : ""),
           }
-        } satisfies FetchResult);
+        } satisfies FetchResult;
+        console.log('FetchResult', result);
+        observer.next(result);
         observer.complete();
       }, 500);
       return () => clearTimeout(timeout);
